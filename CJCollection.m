@@ -17,7 +17,7 @@
                           options:kNilOptions
                           error:&error];
 
-    NSLog(@"JSON: %@", json);
+    // NSLog(@"JSON: %@", json);
     
     CJCollection *collection = [[CJCollection alloc] init];
     
