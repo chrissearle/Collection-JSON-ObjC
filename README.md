@@ -8,12 +8,16 @@ Requires iOS5.
 
 Create a callback - grabbing a URL:
 
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSData* data = [NSData dataWithContentsOfURL:url];
-        [self performSelectorOnMainThread:@selector(fetchedData:)
-                               withObject:data waitUntilDone:YES];
-    });
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     
+    dispatch_async(queue, ^{
+        NSData* data = [NSData dataWithContentsOfURL:url];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self fetchedData:data];
+        });
+    });
+
 In the handler:
 
     - (void)fetchedData:(NSData *)responseData {
