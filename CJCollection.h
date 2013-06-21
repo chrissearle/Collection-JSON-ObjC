@@ -7,6 +7,6 @@
 @property (strong, nonatomic) NSURL* href;
 @property (strong, nonatomic) NSString* version;
 
-+ (CJCollection *)collectionForNSData:(NSData *)data;
++ (CJCollection *)collectionForNSData:(NSData *)data error:(NSError **)error;
 
 @end

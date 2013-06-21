@@ -9,15 +9,31 @@
 @synthesize version;
 @synthesize href;
 
-+ (CJCollection *) collectionForNSData:(NSData *)data {
-    NSError* error;
++ (CJCollection *) collectionForNSData:(NSData *)data error:(NSError **)error {
+    if (data == nil) {
+        if (error != NULL) {
+            NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
+            [errorDetail setValue:@"Can't convert nil data to collection" forKey:NSLocalizedDescriptionKey];
+            *error = [NSError errorWithDomain:@"CollectionJSON" code:100 userInfo:errorDetail];
+        }
+        return nil;
+    }
     
+    NSError* internalError = nil;
+
     NSDictionary* json = [NSJSONSerialization
                           JSONObjectWithData:data
                           options:kNilOptions
-                          error:&error];
+                          error:&internalError];
 
-    // NSLog(@"JSON: %@", json);
+    if (!json) {
+        if (error != NULL) {
+            NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
+            [errorDetail setValue:@"Error converting to JSON" forKey:NSLocalizedDescriptionKey];
+            *error = [NSError errorWithDomain:@"CollectionJSON" code:200 userInfo:[internalError userInfo]];
+        }
+        return nil;
+    }
     
     CJCollection *collection = [[CJCollection alloc] init];
     
