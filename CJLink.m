@@ -2,11 +2,6 @@
 
 @implementation CJLink
 
-@synthesize href;
-@synthesize prompt;
-@synthesize rel;
-@synthesize otherFields;
-
 + (CJLink *)linkForDictionary:(NSDictionary *) dict {
     CJLink *link = [[CJLink alloc] init];
     

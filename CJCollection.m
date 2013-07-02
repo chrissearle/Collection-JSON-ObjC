@@ -1,13 +1,9 @@
 #import "CJCollection.h"
 #import "CJLink.h"
 #import "CJItem.h"
+#import "CJQuery.h"
 
 @implementation CJCollection
-
-@synthesize links;
-@synthesize items;
-@synthesize version;
-@synthesize href;
 
 + (CJCollection *) collectionForNSData:(NSData *)data error:(NSError **)error {
     if (data == nil) {
@@ -43,6 +39,7 @@
     collection.href = [NSURL URLWithString:[dict objectForKey:@"href"]];
     collection.links = [CJLink linksForDictionary:dict];
     collection.items = [CJItem itemsForDictionary:dict];
+    collection.queries = [CJQuery queriesForDictionary:dict];
     
     return collection;
 }

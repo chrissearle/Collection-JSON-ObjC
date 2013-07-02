@@ -4,6 +4,7 @@
 
 @property (strong, nonatomic) NSArray* links;
 @property (strong, nonatomic) NSArray* items;
+@property (strong, nonatomic) NSArray *queries;
 @property (strong, nonatomic) NSURL* href;
 @property (strong, nonatomic) NSString* version;
 

@@ -3,10 +3,6 @@
 
 @implementation CJItem
 
-@synthesize href;
-@synthesize links;
-@synthesize data;
-
 + (CJItem *)itemForDictionary:(NSDictionary *) dict {
     CJItem *item = [[CJItem alloc] init];
     

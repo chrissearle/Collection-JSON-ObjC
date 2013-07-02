@@ -1,13 +1,26 @@
 ## Collection-JSON-ObjC
 
-Collection+JSON wrapper for Objective-C
+Collection+JSON parser for Objective-C
 
-Very simple wrapper right now - only supporting read and only supporting items and links.
+This set of classes exists to parse the JSON response to a Collection+JSON call into simple objects.
 
-Requires iOS5.
+Currently supported:
+
+* collection
+* item
+* link
+* query
+
+### Requirements
+
+* ARC
+* XCode 4.4 or later (auto-generation of @synthesize)
+
+### Usage
 
 Create a callback - grabbing a URL:
 
+```objc
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     
     dispatch_async(queue, ^{
@@ -17,17 +30,19 @@ Create a callback - grabbing a URL:
             [self fetchedData:data];
         });
     });
+```
 
 In the handler:
 
+```objc
     - (void)fetchedData:(NSData *)responseData {
         CJCollection *collection = [CJCollection collectionForNSData:responseData];
     
         // Now have collection.items and collection.links available etc
         ...
     }
+```
 
-
-### Usage
+### Installation
 
 Simplest is probably git-submodule this project into your app.
