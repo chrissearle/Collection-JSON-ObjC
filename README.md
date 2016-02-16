@@ -14,7 +14,7 @@ Currently supported:
 ### Requirements
 
 * ARC
-* XCode 4.4 or later (auto-generation of @synthesize)
+* Xcode 4.4 or later (auto-generation of @synthesize)
 
 ### Usage
 
